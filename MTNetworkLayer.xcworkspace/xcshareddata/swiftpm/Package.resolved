@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MTAutoLayoutKit",
+        "repositoryURL": "https://github.com/murilogteixeira/MTAutoLayoutKit",
+        "state": {
+          "branch": null,
+          "revision": "f3b99a519b06f2f9f7bc7356d7adbde4e01e51b5",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "MTFoundation",
+        "repositoryURL": "https://github.com/murilogteixeira/MTFoundation.git",
+        "state": {
+          "branch": null,
+          "revision": "85e06305832e7193c7d7a5e18400a8293bc0b105",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
