@@ -9,7 +9,7 @@ import Foundation
 
 public typealias Completion<T> = ((Result<T, Error>) -> Void)
 
-open class Router<Endpoint: EndpointType>: NetworkerRouter {
+final public class Router<Endpoint: EndpointType>: NetworkerRouter {
     private var task: URLSessionTask?
     public var showLog: Bool = true
 
