@@ -7,13 +7,15 @@
 
 import Foundation
 
+public typealias Completion<T> = ((Result<T, Error>) -> Void)
+
 open class Router<Endpoint: EndpointType>: NetworkerRouter {
     private var task: URLSessionTask?
     public var showLog: Bool = true
 
     public init() { }
 
-    public func request<T: Decodable>(_ route: Endpoint, completion: @escaping ((Result<T, Error>) -> Void)) {
+    public func request<T: Decodable>(_ route: Endpoint, completion: @escaping Completion<T>) {
         let session = URLSession.shared
 
         do {

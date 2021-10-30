@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias Completion<T> = ((Result<T, Error>) -> Void)
-
 protocol TodosNetworkManager {
     func fetchTodos(completion: @escaping Completion<[Todo]>)
 }
