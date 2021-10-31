@@ -75,12 +75,6 @@ final public class Router<Endpoint: EndpointType>: NetworkerRouter {
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            case .requestParameters(let bodyParameters, let urlParameters):
-                try configureParameters(
-                    bodyParameters: bodyParameters,
-                    urlParameters: urlParameters,
-                    request: &request
-                )
             case .requestParametersAndHeaders(let bodyParameters, let urlParameters, let additionalHeaders):
                 addAdditionalHeaders(additionalHeaders, request: &request)
                 try configureParameters(bodyParameters: bodyParameters, urlParameters: urlParameters, request: &request)

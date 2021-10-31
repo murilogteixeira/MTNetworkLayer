@@ -12,15 +12,15 @@ public typealias HTTPHeaders = [String: String]
 public enum HTTPTask {
     case request
 
-    case requestParameters(
-        bodyParameters: Parameters?,
-        urlParameters: Parameters?
-    )
+//    case requestParameters(
+//        bodyParameters: Parameters? = nil,
+//        urlParameters: Parameters? = nil
+//    )
 
     case requestParametersAndHeaders(
-        bodyParameters: Parameters?,
-        urlParameters: Parameters?,
-        additionalHeaders: HTTPHeaders?
+        bodyParameters: Parameters? = nil,
+        urlParameters: Parameters? = nil,
+        additionalHeaders: HTTPHeaders? = nil
     )
 
 //    case download, upload, etc...
