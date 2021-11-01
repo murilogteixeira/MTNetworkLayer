@@ -29,7 +29,7 @@ final public class Router<Endpoint: EndpointType>: NetworkerRouter {
                     return
                 }
 
-                if self?.showLog ?? false { NetworkLogger.log(response: response, data: data) }
+                if self?.showLog ?? true { NetworkLogger.log(response: response, data: data) }
 
                 if let response = response as? HTTPURLResponse,
                    let result = self?.handleNetworkResponse(response) {
