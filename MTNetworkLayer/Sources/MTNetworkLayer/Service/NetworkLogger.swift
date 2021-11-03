@@ -63,13 +63,12 @@ class NetworkLogger {
             logOutput += "\(key): \(value) \n"
         }
 
-        if let data = data {
-            if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
-               let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
-                logOutput += "\n \(String(data: jsonData, encoding: .utf8) ?? "")"
-            } else {
-                print("json data malformed")
-            }
+        if let data = data,
+           let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+           let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+            logOutput += "\n \(String(data: jsonData, encoding: .utf8) ?? "")"
+        } else {
+            print("json data malformed")
         }
 
         print(logOutput)
