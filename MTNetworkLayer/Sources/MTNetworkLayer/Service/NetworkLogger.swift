@@ -31,10 +31,6 @@ class NetworkLogger {
             logOutput += "\(key): \(value) \n"
         }
 
-        if let body = request.httpBody {
-            logOutput += "\n \(String(data: body, encoding: .utf8) ?? "")"
-        }
-
         if let body = request.httpBody,
            let json = try? JSONSerialization.jsonObject(with: body, options: .mutableContainers),
            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
