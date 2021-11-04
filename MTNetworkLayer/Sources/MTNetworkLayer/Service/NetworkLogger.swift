@@ -35,6 +35,14 @@ class NetworkLogger {
             logOutput += "\n \(String(data: body, encoding: .utf8) ?? "")"
         }
 
+        if let body = request.httpBody,
+           let json = try? JSONSerialization.jsonObject(with: body, options: .mutableContainers),
+           let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+            logOutput += "\n \(String(data: jsonData, encoding: .utf8) ?? "")"
+        } else {
+            print("json data malformed")
+        }
+
         print(logOutput)
     }
 
