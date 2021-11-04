@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol JSONAble { }
+public protocol JSONAble { }
 
-extension JSONAble {
+public extension JSONAble {
     func toDict() -> [String:Any] {
         var dict = [String:Any]()
         let otherSelf = Mirror(reflecting: self)
