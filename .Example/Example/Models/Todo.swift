@@ -12,7 +12,7 @@
 import Foundation
 
 // MARK: - Todo
-struct Todo: Decodable {
+struct Todo: Codable {
     let userID, id: Int
     let title: String
     let completed: Bool

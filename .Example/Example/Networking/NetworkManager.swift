@@ -9,35 +9,19 @@ import Foundation
 import MTNetworkLayer
 
 class NetworkManager {
-    
-    private let router = Router<JsonPlaceholderApi>()
 
-    public init(showLog: Bool = true) {
-        router.showLog = showLog
+    enum Evironment: String {
+        case dev, prod
+    }
+    static let environment: Evironment = .dev
+
+    static var environmentBaseURL: String {
+        switch Self.environment {
+        case .dev: return "https://jsonplaceholder.typicode.com"
+        case .prod: return "https://jsonplaceholder.typicode.com"
+        }
     }
 
-}
+    public init() { }
 
-extension NetworkManager: TodosNetworkManager {
-    func fetchTodos(completion: @escaping Completion<[Todo]>) {
-        router.request(.todos, completion: completion)
-    }
-}
-
-extension NetworkManager: CommentsNetworkManager {
-    func fetchComments(postId: Int? = nil, completion: @escaping Completion<[Comment]>) {
-        router.request(.comments(postId: postId), completion: completion)
-    }
-}
-
-extension NetworkManager: UsersNetworkManager {
-    func fetchUsers(completion: @escaping Completion<[User]>) {
-        router.request(.users, completion: completion)
-    }
-}
-
-extension NetworkManager: PostsNetworkManager {
-    func fetchPost(id: Int? = nil, completion: @escaping Completion<[Post]>) {
-        router.request(.posts(id: id), completion: completion)
-    }
 }

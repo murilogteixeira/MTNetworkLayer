@@ -78,6 +78,9 @@ final public class Router<Endpoint: EndpointType>: NetworkerRouter {
             case .requestParametersAndHeaders(let bodyParameters, let urlParameters, let additionalHeaders):
                 addAdditionalHeaders(additionalHeaders, request: &request)
                 try configureParameters(bodyParameters: bodyParameters, urlParameters: urlParameters, request: &request)
+            case .requestBodyParametersAndHeaders(let bodyParameters, let urlParameters, let additionalHeaders):
+                addAdditionalHeaders(additionalHeaders, request: &request)
+                try configureBodyParameters(bodyParameters: bodyParameters, urlParameters: urlParameters, request: &request)
             }
             return request
         } catch {
@@ -93,6 +96,24 @@ final public class Router<Endpoint: EndpointType>: NetworkerRouter {
         do {
             if let bodyParameters = bodyParameters {
                 try JSONParameterEncoder.encode(urlRequest: &request, with: bodyParameters)
+            }
+
+            if let urlParameters = urlParameters {
+                try URLParameterEncoding.encode(urlRequest: &request, with: urlParameters)
+            }
+        } catch {
+            throw error
+        }
+    }
+
+    private func configureBodyParameters<T: Encodable>(
+        bodyParameters: T?,
+        urlParameters: Parameters?,
+        request: inout URLRequest
+    ) throws {
+        do {
+            if let bodyParameters = bodyParameters {
+                try JSONParameterEncoder.encode(urlRequest: &request, withObj: bodyParameters)
             }
 
             if let urlParameters = urlParameters {
